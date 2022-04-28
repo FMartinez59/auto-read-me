@@ -8,7 +8,7 @@ const promptUser = () => {
     {
       type: 'input',
       name: 'Project Title',
-      message: 'What is your Projects Title',
+      message: 'What is your Project Title',
     },
     {
       type: 'editor',
@@ -39,11 +39,27 @@ const promptUser = () => {
         type: 'editor',
         name: 'Usage',
         message: 'Provide instructions and examples for use. Include screenshots as needed. To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax: ```md ![alt text](assets/images/screenshot.png)```',
-      },
-      {
+    },
+    {
         type: 'editor',
         name: 'Credits',
         message: 'List your collaborators, if any, with links to their GitHub profiles. If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section. If you followed tutorials, include links to those here as well',
-      },
+    },
+    {
+        type: 'list',
+        name: 'License',
+        message: 'What license does your project have?',
+        choices: ["MIT", "APACHE2.0", "Boost1.0", "GPL3.0", "BSD2" ,"BSD3", "None"],
+    },
+    {
+        type: "input",
+        name: "github",
+        message: "What's your Github username?"
+    },
+    {
+        type: "input",
+        name: "email",
+        message: "What's your email?"
+    },
   ]);
 };
