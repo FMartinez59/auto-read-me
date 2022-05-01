@@ -20,7 +20,7 @@ const promptUser = () => {
       type: "input",
       name: "descriptionTwo",
       message:
-        'Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")?',
+        'Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")',
     },
     {
       type: "input",
@@ -54,17 +54,12 @@ const promptUser = () => {
       type: "list",
       name: "License",
       message: "What license does your project have?",
-      choices: ["MIT", "APACHE2.0", "CC", "	EUPL-1.1"],
+      choices: ["MIT", "APACHE2.0", "CC", "None"],
     },
     {
       type: "input",
       name: "Questions",
-      message: "What's your Github username?",
-    },
-    {
-      type: "input",
-      name: "Questions",
-      message: "What's your email?",
+      message: "What's your Github username and Email",
     },
   ]);
 };
@@ -83,26 +78,31 @@ function generateReadMe({
   Questions,
 }) {
   return `# ${ProjectTitle}
-  ## ${descriptionOne} ${descriptionTwo} ${descriptionThree} ${descriptionFour}
+  ## Description 
+  ${descriptionOne} ${descriptionTwo} ${descriptionThree} ${descriptionFour}
   
   ## Table of Contents (Optional)
   
-  ## ${Installation}
+  ## Installation
+  ${Installation}
   
-  ## ${Usage}
+  ## Usage
+  ${Usage}
   
-  ## ${Credits}
+  ## Credits
+  ${Credits}
 
-  ## ${License}
+  ## License
+  ${License} ${runLicense(License)}
 
-  ## ${Questions}
+  ## Questions
+  ${Questions}
 `;
 }
 const init = () => {
   promptUser()
     // Use writeFileSync method to use promises instead of a callback function
     .then(function (answers) {
-      console.log(answers);
       fs.writeFileSync("./README.md", generateReadMe(answers));
     })
     //fs.writeFileSync(console.log(answers)))
@@ -110,7 +110,12 @@ const init = () => {
     .catch((err) => console.error(err));
 };
 
+function runLicense(data) {
+  if (data === 'MIT') {
+    return `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)`
+  }
+}
+
+
 init();
 
-//ProjectTitle, descriptionOne, descriptionTwo, descriptionThree,
-//descriptionFour, Installation, Usage, Credits, License, github, email
