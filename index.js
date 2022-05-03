@@ -1,8 +1,5 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
-const { relative } = require("path");
-
-// Use writeFileSync method to use promises instead of a callback function
 
 const promptUser = () => {
   return inquirer.prompt([
@@ -78,6 +75,9 @@ function generateReadMe({
   Questions,
 }) {
   return `# ${ProjectTitle}
+  ## License
+  ${License} ${runLicense(License)}
+ 
   ## Description 
   ${descriptionOne} ${descriptionTwo} ${descriptionThree} ${descriptionFour}
   
@@ -91,9 +91,6 @@ function generateReadMe({
   
   ## Credits
   ${Credits}
-
-  ## License
-  ${License} ${runLicense(License)}
 
   ## Questions
   ${Questions}
@@ -113,6 +110,12 @@ const init = () => {
 function runLicense(data) {
   if (data === 'MIT') {
     return `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)`
+  } else if (data === 'APACHE2.0') {
+    return `[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)`
+  } else if (data === 'CC') {
+    return `[![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)`
+  } else (data === 'None') {
+    return `No License Available`
   }
 }
 
