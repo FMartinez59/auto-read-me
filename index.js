@@ -78,10 +78,16 @@ function generateReadMe({
   ## License
   ${License} ${runLicense(License)}
  
+  ## Table of Contents 
+- [License](#license)
+- [Description](#description)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Credits](#credits)
+- [Questions](#questions)
+
   ## Description 
   ${descriptionOne} ${descriptionTwo} ${descriptionThree} ${descriptionFour}
-  
-  ## Table of Contents (Optional)
   
   ## Installation
   ${Installation}
@@ -114,11 +120,10 @@ function runLicense(data) {
     return `[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)`
   } else if (data === 'CC') {
     return `[![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)`
-  } else (data === 'None') {
+  } else if (data === 'None') {
     return `No License Available`
   }
 }
-
 
 init();
 
