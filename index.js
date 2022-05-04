@@ -106,13 +106,12 @@ const init = () => {
   promptUser()
     // Use writeFileSync method to use promises instead of a callback function
     .then(function (answers) {
-      fs.writeFileSync("./README.md", generateReadMe(answers));
+      fs.writeFileSync("./output/README.md", generateReadMe(answers));
     })
-    //fs.writeFileSync(console.log(answers)))
     .then(() => console.log("Successfully wrote to read.me"))
     .catch((err) => console.error(err));
 };
-
+//will return the License logo + link back to the read.me
 function runLicense(data) {
   if (data === 'MIT') {
     return `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)`
@@ -121,9 +120,8 @@ function runLicense(data) {
   } else if (data === 'CC') {
     return `[![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)`
   } else if (data === 'None') {
-    return `No License Available`
+    return ''
   }
 }
-
+//runs on start
 init();
-
